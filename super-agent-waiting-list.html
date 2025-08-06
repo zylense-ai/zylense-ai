@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Agent - AI Agent Evaluation Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS 2.2.19 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Light background for the overall page */
+            color: #333;
+        }
+        /* Custom styles to match the image more closely */
+        .btn-primary {
+            background-color: #007bff; /* A blue that matches the image */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .section-heading {
+            font-size: 2.5rem; /* Equivalent to text-4xl */
+            font-weight: 800; /* Equivalent to font-extrabold */
+            color: #1a202c; /* Dark text for headings */
+        }
+        .sub-heading {
+            font-size: 1.5rem; /* Equivalent to text-2xl */
+            font-weight: 600; /* Equivalent to font-semibold */
+            color: #4a5568; /* Slightly lighter text for subheadings */
+        }
+        .text-blue-main {
+            color: #007bff; /* Main blue color from the image */
+        }
+        .bg-pattern {
+            background-image: url('https://placehold.co/1600x900/f8f8f8/e0e0e0?text=Abstract+Pattern'); /* Placeholder for the abstract background */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8;
+        }
+        .feature-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card { /* New style for the "Why You Need This" section */
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            text-align: left;
+        }
+        .pricing-card { /* Renamed for general use, if needed for a CTA */
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            text-align: center;
+        }
+        .list-item-check { /* Style for checkmark lists */
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+        .list-item-check svg {
+            margin-right: 0.5rem;
+            color: #28a745; /* Green checkmark */
+        }
+
+        /* Styles copied from user's provided form code */
+        .cta-title-form { /* Renamed to avoid conflict with existing .cta-title */
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+            margin-bottom: 0.7rem;
+        }
+        .cta-desc-form { /* Renamed to avoid conflict with existing .cta-desc */
+            color: #007bff; /* Adjusted to match existing blue color */
+            font-size: 1.08rem;
+            margin-bottom: 1.5rem;
+        }
+        .avatars {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+            font-size: 1.1rem;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* Adjusted shadow color */
+        }
+        .form-box {
+            width: 100%;
+            max-width: 370px;
+            margin: 0 auto 1.2rem auto;
+            background: #fff;
+            border-radius: 1.1rem;
+            box-shadow: 0 2px 18px 0 rgba(0,0,0,0.07); /* Adjusted shadow color */
+            padding: 2.2rem 2rem 1.5rem 2rem;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .form-box label {
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            display: block;
+            font-size: 1rem;
+        }
+        .form-box input {
+            width: 100%;
+            padding: 12px 13px;
+            margin-top: 7px;
+            margin-bottom: 18px;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+            font-family: 'Inter', Arial, sans-serif;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+            background: #fff;
+        }
+        .form-box input:focus {
+            border-color: #007bff; /* Adjusted to match existing blue color */
+            outline: none;
+        }
+        .form-box button {
+            width: 100%;
+            background-color: #007bff; /* Adjusted to match existing blue color */
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 13px 0;
+            border-radius: 0.5rem;
+            margin-top: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 2px 8px rgba(0,123,255,0.10); /* Adjusted shadow color */
+        }
+        .form-box button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .privacy-note {
+            font-size: 0.95rem;
+            color: #71717a;
+            margin-top: 1.2rem;
+        }
+        .privacy-note a {
+            color: #007bff; /* Adjusted to match existing blue color */
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+            will-change: opacity, transform;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        .cta-animated-btn {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1);
+            z-index: 1;
+        }
+        .cta-animated-btn::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 100%;
+            background: #0056b3; /* Darker blue for hover effect */
+            z-index: -1;
+            transform: translateX(-100%);
+            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+        }
+        .cta-animated-btn:hover {
+            transform: translateY(-2px);
+        }
+        .cta-animated-btn:hover::before {
+            transform: translateX(0);
+        }
+        /* Custom message box for alerts */
+        #messageBox {
+            display:none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+        #messageText {
+            font-size: 1.1rem;
+            color: #1a202c; /* Adjusted to match existing dark heading color */
+        }
+        #messageBoxClose {
+            background-color: #007bff; /* Adjusted to match existing blue color */
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        @media (min-width: 900px) {
+            .right-section .form-box {
+                position: sticky;
+                top: 40px;
+                z-index: 10;
+            }
+        }
+        /* Navigation Bar Styles */
+        .navbar {
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0 32px;
+            height: 70px;
+            align-items: center;
+        }
+
+        .navbar-menu li a {
+            color: #0B0B5D;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+
+        .navbar-menu li a:hover {
+            color: #0097A7;
+        }
+
+        @media (max-width: 900px) {
+            .navbar-menu {
+                flex-direction: column;
+                gap: 10px;
+                height: auto;
+                align-items: flex-start;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+    <!-- Navigation Bar Start -->
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li><a href="website.html">Home</a></li>
+        </ul>
+    </nav>
+    <!-- Navigation Bar End -->
+
+    <!-- HERO SECTION (single, functional waitlist form) -->
+<section class="hero-section" style="padding: 80px 0 40px 0; text-align: center; background: #f8f9fa;">
+  <h1 class="fade-in" style="font-size:2.5rem; font-weight:800; color:#222; margin-bottom:18px; animation:fadeInUp 0.7s cubic-bezier(.4,0,.2,1);">Super Agent — Test, Analyze & Score Any <span style="color:#1976d2;">AI Agent</span></h1>
+  <p class="fade-in" style="max-width:600px; margin:0 auto 18px auto; color:#444; font-size:1.2rem; animation:fadeInUp 1s cubic-bezier(.4,0,.2,1); animation-delay:0.2s; animation-fill-mode:both;">Super Agent is an advanced AI evaluator that performs a complete screening test on any AI agent — including LLMs, chatbots, and custom APIs — and delivers detailed performance analytics in a statistical format.</p>
+  <div class="fade-in" style="margin: 32px 0 0 0; animation:fadeInUp 1.2s cubic-bezier(.4,0,.2,1); animation-delay:0.4s; animation-fill-mode:both;">
+    <span style="display:inline-block; background:#e0f7fa; color:#0097A7; font-weight:600; border-radius:16px; padding:6px 18px; font-size:1.08rem; margin-bottom:18px; letter-spacing:0.2px;">Join our waitlist for early access!</span>
+    <form id="waitlistEmailForm" action="https://script.google.com/macros/s/AKfycbxDZCX7Q2MCj0L85BOpF5XGzpAJG5QzWLfk8lvKDIy9bYZBE3rkwAQVArQqNGlXQPrR/exec" method="POST" style="display:inline-flex; gap:12px; justify-content:center;">
+      <input type="email" name="email" placeholder="Enter your email" required style="padding:12px 18px; border-radius:8px; border:1px solid #ccc; font-size:1rem; min-width:220px;">
+      <button type="submit" style="background:#1976d2; color:#fff; font-weight:600; border:none; border-radius:8px; padding:12px 28px; font-size:1rem; cursor:pointer;">Request access</button>
+    </form>
+    <div id="waitlistEmailMsg" style="text-align:center; margin-top:12px; font-size:1rem;"></div>
+  </div>
+</section>
+<style>
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(32px); }
+  to { opacity:1; transform:none; }
+}
+.fade-in { opacity:0; animation-fill-mode:forwards; }
+.fade-in { animation-play-state:running; }
+.hero-section .fade-in { animation-play-state:running; }
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    el.style.opacity = 1;
+  });
+});
+const form = document.getElementById('waitlistEmailForm');
+const msg = document.getElementById('waitlistEmailMsg');
+const btn = form.querySelector('button[type="submit"]');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.textContent = "Submitting...";
+  msg.textContent = "";
+  msg.style.opacity = 0;
+  fetch(form.action, { method: 'POST', body: new FormData(form) })
+    .then(r => {
+      if (r.ok) {
+        msg.innerHTML = '<span style="color:#22c55e;font-size:1.2em;">&#10003;</span> <span style="color:#009688;">Submitted! You are on the waitlist.</span>';
+        form.reset();
+      } else {
+        msg.innerHTML = '<span style="color:#ef4444;font-size:1.2em;">&#10007;</span> <span style="color:#D32F2F;">There was an error. Please try again.</span>';
+      }
+      msg.style.opacity = 1;
+      btn.disabled = false;
+      btn.textContent = "Request access";
+      setTimeout(() => { msg.style.opacity = 0; }, 4000);
+    })
+    .catch(() => {
+      msg.innerHTML = '<span style="color:#ef4444;font-size:1.2em;">&#10007;</span> <span style="color:#D32F2F;">Network error. Please try again.</span>';
+      msg.style.opacity = 1;
+      btn.disabled = false;
+      btn.textContent = "Request access";
+      setTimeout(() => { msg.style.opacity = 0; }, 4000);
+    });
+});
+</script>
+<!-- END HERO SECTION -->
+
+    <!-- What Is Super Agent Section -->
+    <section id="what-is" class="relative z-10 py-16 md:py-20 bg-white fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div>
+                <h3 class="section-heading text-left mb-6">
+                    🎯 What Is Super Agent?
+                </h3>
+                <p class="text-gray-600 mb-8">
+                    Super Agent is an advanced AI evaluator that performs a complete screening test on any AI agent — including LLMs, chatbots, and custom APIs — and delivers detailed performance analytics in a statistical format.
+                </p>
+                <ul class="space-y-4">
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Complete screening test on any AI agent
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Evaluates LLMs, chatbots, and custom APIs
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Delivers detailed performance analytics in statistical format
+                    </li>
+                </ul>
+            </div>
+            <!-- Right Images -->
+            <div class="flex flex-col space-y-6">
+                <div class="rounded-lg shadow-lg"></div>
+                <div class="rounded-lg shadow-lg"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secure & Developer-Friendly Section -->
+    <section id="secure-friendly" class="relative z-10 py-16 md:py-20 bg-gray-50 fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Image -->
+            <div class="flex justify-center md:order-last">
+                <div class="rounded-lg shadow-lg"></div>
+            </div>
+            <!-- Right Content -->
+            <div class="md:order-first">
+                <h3 class="section-heading text-left mb-8">
+                    ✔️ Secure & Developer-Friendly
+                </h3>
+                <ul class="space-y-4">
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        No data leaks – API endpoints and logs are not stored
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Clean UI with detailed insights
+                    </li>
+                    <li class="list-item-check">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        PDF export and visual report support
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why You Need This Section -->
+    <section id="why-need" class="relative z-10 py-16 md:py-20 bg-white fade-in-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="section-heading text-center mb-12">🎯 Why You Need This</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Reason Card 1 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Validate Third-Party Agents</h4>
+                    <p class="text-gray-600 text-sm">
+                        Ensure external AI agents meet your performance and security standards before integration.
+                    </p>
+                </div>
+                <!-- Reason Card 2 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Run Regression Tests</h4>
+                    <p class="text-gray-600 text-sm">
+                        Automatically test your AI models after every update to catch regressions early.
+                    </p>
+                </div>
+                <!-- Reason Card 3 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Automated Benchmarking</h4>
+                    <p class="text-gray-600 text-sm">
+                        Use Super Agent as an automated tool to benchmark your AI models against industry standards.
+                    </p>
+                </div>
+                <!-- Reason Card 4 -->
+                <div class="info-card">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Compare AI Models</h4>
+                    <p class="text-gray-600 text-sm">
+                        Get real metrics to compare different AI models side-by-side and make informed decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action Section (now with detailed form) -->
+    <section id="final-cta" class="relative z-10 py-16 md:py-20 bg-gray-100 text-center fade-in-section">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="cta-title-form">Join our journey and<br>get early access</div>
+            <div class="cta-desc-form">Join our extensive waitlist today to spark connection and get notified when we launch 🎉</div>
+            <div class="avatars">
+                <div class="avatar"><span>👩‍🦱</span></div>
+                <div class="avatar"><span>🧑🏾</span></div>
+                <div class="avatar"><span>🧔🏻</span></div>
+                <div class="avatar"><span>R</span></div>
+                <div class="avatar"><span>🦸‍♂️</span></div>
+                <div class="avatar"><span>🧑‍🎤</span></div>
+            </div>
+            <div class="form-box">
+                <form id="superAgentForm" action="https://script.google.com/macros/s/AKfycbzfXbRhHRe9P3Y2ZrFlWSZUpboFj4g6jcRFJytLmVOfBotAQEJMJVdBo_ImBgtOBbM1/exec" method="POST">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <label for="phone">Mobile Number</label>
+                    <input type="text" id="phone" name="phone" placeholder="Mobile Number" required>
+                    <label for="company">Organization / Company Name</label>
+                    <input type="text" id="company" name="company" placeholder="Organization / Company Name">
+                    <button type="submit" class="cta-animated-btn">Continue →</button>
+                </form>
+            </div>
+            <!-- Custom message box for alerts -->
+            <div id="messageBox" style="display:none;">
+                <p id="messageText"></p>
+                <button id="messageBoxClose">Close</button>
+            </div>
+            <p class="privacy-note">
+                By clicking "Continue", you agree to our <a href="#" id="terms-link" style="color:#1976d2; text-decoration:underline;">Terms and Conditions!</a> and <a href="#" id="privacy-link" style="color:#1976d2; text-decoration:underline;">Privacy Policy</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full py-7 bg-gray-900 text-white mt-2">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <span class="text-2xl font-extrabold flex items-center">
+                    <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                    <span class="text-white">Super Agent</span>
+                </span>
+            </div>
+            <div class="flex space-x-6 text-sm mb-4 md:mb-0">
+                <a href="#what-is" class="hover:text-gray-300">What is it?</a>
+                <a href="#secure-friendly" class="hover:text-gray-300">Secure & Friendly</a>
+                <a href="#why-need" class="hover:text-gray-300">Why you need this</a>
+            </div>
+            <div class="text-xs text-gray-400">
+                © 2024 Super Agent. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to show custom message box
+        function showMessageBox(message, type) {
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            messageText.textContent = message;
+            messageText.style.color = type === 'success' ? '#007bff' : '#D32F2F'; // Blue for success, red for error
+            messageBox.style.display = 'block';
+        }
+
+        // Function to hide custom message box
+        document.getElementById('messageBoxClose').addEventListener('click', function() {
+            document.getElementById('messageBox').style.display = 'none';
+        });
+
+        // Event listener for form submission
+        document.getElementById("superAgentForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+            const form = e.target;
+            const data = new FormData(form);
+
+            // Fetch API to submit form data
+            fetch(form.action, {
+                method: "POST",
+                body: data,
+            })
+            .then(response => {
+                // Check if the response is successful (status code 2xx)
+                if (response.ok) {
+                    window.location.href = "thankyou.html";
+                } else {
+                    // Handle HTTP errors
+                    showMessageBox("❌ There was an error. Please try again.", 'error');
+                }
+            })
+            .catch(error => {
+                // Handle network errors
+                console.error("Error during form submission:", error);
+                showMessageBox("❌ There was a network error. Please check your connection and try again.", 'error');
+            });
+        });
+
+        // Intersection Observer for fade-in animation
+        (function() {
+            const faders = document.querySelectorAll('.fade-in-section');
+            if (!('IntersectionObserver' in window) || faders.length === 0) return;
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.18 });
+            faders.forEach(el => observer.observe(el));
+        })();
+    </script>
+
+<!-- Terms and Conditions Modal -->
+<div id="termsModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.28);">
+  <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:#fff; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); width:95vw; max-width:650px; max-height:85vh; padding:32px 28px 24px 28px; overflow-y:auto;">
+    <button id="closeTermsModal" style="position:absolute; top:18px; right:18px; background:none; border:none; font-size:1.5rem; color:#333; cursor:pointer;">&times;</button>
+    <h2 style="font-size:1.45rem; font-weight:800; margin-bottom:12px;">Terms and Conditions!</h2>
+    <div style="font-size:1rem; color:#222; line-height:1.6;">
+      <p style="font-size:0.98rem; color:#666; margin-bottom:10px;">(2 December 2024, Hyderabad, Telangana, India)</p>
+      <p>Thanks for using our products and services ("Services"). The Services are provided by Zylense.ai Pvt Ltd. (referred to as "Zylense") Please read these Terms of Use ("Terms") carefully before using the zylense.ai and its subdomain websites (referred to as the "Website") operated by Zylense ("we," "us," or "our"). These Terms govern your access to and use of the Website. By accessing or using the Website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you may not access or use the Website.</p>
+      <p>Our Services are very diverse, so sometimes additional terms or product requirements may apply. Additional terms will be available with the relevant services, and those additional terms become part of your agreement with us if you use those services. By using our Services, you are agreeing to these terms. Please read them carefully.</p>
+      <ol style="margin-left:1.2em;">
+        <li style="margin-bottom:8px;"><b>Intellectual Property Rights</b><br>The contents of the Website, including but not limited to text, graphics, images, logos, icons, audio clips, digital downloads, and software, are the property of Zylense or its content suppliers and are protected by applicable copyright, trademark, and other intellectual property laws. You may not modify, copy, reproduce, republish, upload, post, transmit, or distribute any material from the Website without our prior written consent.</li>
+        <li style="margin-bottom:8px;"><b>Use of the Website</b><br>You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of, or restrict or inhibit the use and enjoyment of, the Website by any third party. Prohibited activities include, but are not limited to:
+          <ul style="margin-top:4px;">
+            <li>Using the Website in any way that could damage, disable, overburden, or impair the Website or interfere with any other party's use and enjoyment of the Website.</li>
+            <li>Engaging in any unauthorized or illegal activities, including but not limited to hacking, scraping, data mining, or any other activity that violates applicable laws or regulations.</li>
+            <li>Attempting to gain unauthorized access to any portion or feature of the Website or any other systems or networks connected to the Website.</li>
+            <li>Uploading or transmitting any viruses, worms, or other malicious code that may damage or interfere with the operation or security of the Website or any related system, network, or service.</li>
+            <li>Collecting or harvesting any personally identifiable information, including account names or email addresses, from the Website.</li>
+          </ul>
+        </li>
+        <li style="margin-bottom:8px;"><b>Third-Party Links</b><br>The Website may contain links to third-party websites or resources. We provide these links solely as a convenience to you and do not endorse or assume responsibility for the content or availability of such external sites or resources. We are not responsible or liable for any damages or loss caused by or in connection with the use of or reliance on any content, products, services, or information available on or through any third-party website or resource.</li>
+        <li style="margin-bottom:8px;"><b>Disclaimer of Warranties</b><br>The Website is provided on an "as is" and "as available" basis, without any representations or warranties of any kind, express or implied. We do not warrant that the Website will be uninterrupted, error-free, secure, or free from viruses or other harmful components. We disclaim all warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement.</li>
+        <li style="margin-bottom:8px;"><b>Limitation of Liability</b><br>To the fullest extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, arising out of or in connection with your use of the Website.</li>
+        <li style="margin-bottom:8px;"><b>Indemnification</b><br>You agree to indemnify, defend, and hold harmless Zylense, its affiliates, and their respective officers, directors, employees, agents, and licensors from and against any and all claims, liabilities, expenses, damages, and costs, including reasonable attorneys' fees and costs, arising out of or in any way connected with your use of the Website or violation of these Terms.</li>
+        <li style="margin-bottom:8px;"><b>Governing Law</b><br>These Terms shall be governed by and construed in accordance with the laws of India/Telangana/Hyderabad, without regard to its conflict of laws principles.</li>
+        <li style="margin-bottom:8px;"><b>Changes to the Terms</b><br>We reserve the right to modify or replace these Terms at any time. The most current version of the Terms will be posted on the Website. By continuing to access or use the Website after any revisions become effective, you agree to be bound by the revised Terms. If you do not agree to the new Terms, please stop using the Website.</li>
+        <li style="margin-bottom:8px;"><b>Contacting Us</b><br>If you have any questions about these terms of use, the practices of this Website, or your dealings with this Website, please contact us.<br><br>
+        Zylense.ai Pvt Ltd<br>
+        Email: info@zylense.ai | srujana@zylense.ai<br>
+        Website: zylense.ai and its subdomains<br>
+        Jurisdiction: Hyderabad, Telangana, India.
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<!-- Privacy Policy Modal -->
+<div id="privacyModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.28);">
+  <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:#fff; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); width:95vw; max-width:650px; max-height:85vh; padding:32px 28px 24px 28px; overflow-y:auto;">
+    <button id="closePrivacyModal" style="position:absolute; top:18px; right:18px; background:none; border:none; font-size:1.5rem; color:#333; cursor:pointer;">&times;</button>
+    <h2 style="font-size:1.45rem; font-weight:800; margin-bottom:12px;">Privacy Policy</h2>
+    <div style="font-size:1rem; color:#222; line-height:1.6;">
+      <p style="font-size:0.98rem; color:#666; margin-bottom:10px;">(2 December 2024, Hyderabad, Telangana, India)</p>
+      <p>Thanks for using our products and services ("Services"). The Services are provided by Zylense.ai (referred to as "Zylense")</p>
+      <p>This Privacy Policy governs the manner in which Zylense ("we," "us," or "our") collects, uses, maintains, and discloses information collected from users (referred to as "you" or "your") of the zylense.ai (and other websites maintained by Zylense) and its subdomain websites (referred to as "website"). This Privacy Policy applies to the Website and all products and services offered by us.</p>
+      <p>Our Services are very diverse, so sometimes additional terms or product requirements may apply. Additional terms will be available with the relevant services, and those additional terms become part of your agreement with us if you use those services.</p>
+      <p>By using our Services, you are agreeing to these terms. Please read them carefully.</p>
+      <ol style="margin-left:1.2em;">
+        <li style="margin-bottom:8px;"><b>Information We Collect</b><br>We may collect personal identification information from you in various ways, including, but not limited to, when you visit our website, register on the Website, place an order, subscribe to our newsletter, respond to a survey, fill out a form, or interact with other activities, services, features, or resources we make available on our website. The information we collect may include your name, email address, mailing address, phone number, and any other information voluntarily provided by you.</li>
+        <li style="margin-bottom:8px;"><b>Web Browser Cookies</b><br>Our website may use "cookies" to enhance your experience. Your web browser places cookies on your hard drive for record-keeping purposes and sometimes to track information about you. You may choose to set your web browser to refuse cookies or to alert you when cookies are being sent. If you do so, note that some parts of the website may not function properly.</li>
+        <li style="margin-bottom:8px;"><b>How We Use Collected Information</b><br>We may collect and use your personal information for the following purposes:
+          <ul style="margin-top:4px;">
+            <li>To improve customer service: Information you provide helps us respond to your customer service requests and support needs more efficiently.</li>
+            <li>To personalize user experience: We may use information in the aggregate to understand how our users as a group use the services and resources provided on our website.</li>
+            <li>To improve our website: We continually strive to improve our website offerings based on the information and feedback we receive from you.</li>
+            <li>To process transactions: We may use the information you provide about yourself when placing an order only to provide service to that order. We do not share this information with outside parties except to the extent necessary to provide the service.</li>
+            <li>To send periodic emails: We may use the email address you provide to send you information and updates pertaining to your order. It may also be used to respond to your inquiries, questions, and/or other requests. If you decide to opt-in to our mailing list, you will receive emails that may include company news, updates, related product or service information, etc. If at any time you would like to unsubscribe from receiving future emails, we include detailed unsubscribe instructions at the bottom of each email.</li>
+          </ul>
+        </li>
+        <li style="margin-bottom:8px;"><b>How We Protect Your Information</b><br>We adopt appropriate data collection, storage, and processing practices and security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information, username, password, transaction information, and data stored on our website.</li>
+        <li style="margin-bottom:8px;"><b>Sharing Your Personal Information</b><br>We do not sell, trade, or rent your personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers for the purposes outlined above.</li>
+        <li style="margin-bottom:8px;"><b>Third-Party Websites</b><br>You may find advertising or other content on our website that links to the websites and services of our partners, suppliers, advertisers, sponsors, licensors, and other third parties. We do not control the content or links that appear on these websites and are not responsible for the practices employed by websites linked to or from our website. In addition, these websites or services, including their content and links, may be constantly changing. These websites and services may have their own privacy policies and customer service policies. Browsing and interaction on any other website, including websites that have a link to our website, is subject to that website's own terms and policies.</li>
+        <li style="margin-bottom:8px;"><b>Changes to This Privacy Policy</b><br>We have the discretion to update this Privacy Policy at any time. When we do, we will revise the updated date at the bottom of this page. We encourage you to frequently check this page for any changes to stay informed about how we are helping to protect the personal information we collect. You acknowledge and agree that it is your responsibility to review this Privacy Policy periodically and become aware of modifications.</li>
+        <li style="margin-bottom:8px;"><b>Your Acceptance of These Terms</b><br>By using this website, you signify your acceptance of this Privacy Policy. If you do not agree to this Privacy Policy, please do not use our website. Your continued use of the website following the posting of changes to this Privacy Policy will be deemed your acceptance of those changes.</li>
+        <li style="margin-bottom:8px;"><b>Contacting Us</b><br>If you have any questions about this Privacy Policy, the practices of this website, or your dealings with this website, please contact us.<br><br>
+        Zylense.ai  <br>
+        Email: info@zylense.ai | srujana@zylense.ai  <br>
+        Website: www.zylense.ai and its subdomains  <br>
+        Jurisdiction: Hyderabad, Telangana, India
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<script>
+// Modal open/close logic
+const termsLink = document.getElementById('terms-link');
+const termsModal = document.getElementById('termsModal');
+const closeTermsModal = document.getElementById('closeTermsModal');
+if (termsLink && termsModal && closeTermsModal) {
+  termsLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    termsModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  });
+  closeTermsModal.addEventListener('click', function() {
+    termsModal.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+  termsModal.addEventListener('click', function(e) {
+    if (e.target === termsModal) {
+      termsModal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+}
+// Privacy Policy modal logic
+const privacyLink = document.getElementById('privacy-link');
+const privacyModal = document.getElementById('privacyModal');
+const closePrivacyModal = document.getElementById('closePrivacyModal');
+if (privacyLink && privacyModal && closePrivacyModal) {
+  privacyLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    privacyModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  });
+  closePrivacyModal.addEventListener('click', function() {
+    privacyModal.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+  privacyModal.addEventListener('click', function(e) {
+    if (e.target === privacyModal) {
+      privacyModal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
