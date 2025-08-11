@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <title>Super Agent - AI Agent Evaluation Platform</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2BS655Z2H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-C2BS655Z2H');
+    </script>
+    
     <!-- Tailwind CSS 2.2.19 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -288,15 +299,41 @@
 </head>
 <body class="relative overflow-x-hidden">
 
-    <!-- Navigation Bar Start -->
-    <nav class="navbar">
-        <ul class="navbar-menu">
-            <li><a href="website.html">Home</a></li>
-        </ul>
-    </nav>
-    <!-- Navigation Bar End -->
+    <!-- Header / Hero -->
+        <header class="sticky top-0 z-50 w-full">
+            <div class="flex justify-center w-full items-center relative">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 pl-8">
+                    <a href="#" class="text-3xl font-black gradient-text hover:scale-110 transition-transform duration-300">
+                        zylense.<span class="text-[#0096A4]">ai</span>
+                    </a>
+                </div>
+                <div class="bg-transparent/30 backdrop-blur-sm border border-white/10 rounded-2xl mt-4 px-4 py-2 flex items-center w-auto">
+                    <nav class="hidden md:flex items-center space-x-1">
+                        <a href="website.html" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#0096A4] hover:to-[#007b85] hover:text-white transition-all duration-300 font-medium">
+                            Home
+                        </a>
+                        <a href="#what-is" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#0096A4] hover:to-[#007b85] hover:text-white transition-all duration-300 font-medium">
+                            About
+                        </a>
+                        <a href="#secure-friendly" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#007b85] hover:to-[#0C1C46] hover:text-white transition-all duration-300 font-medium">
+                            Features
+                        </a>
+                        <a href="#why-need" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#0C1C46] hover:to-[#0096A4] hover:text-white transition-all duration-300 font-medium">
+                            Why
+                        </a>
+                        <a href="#final-cta" class="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white font-bold hover:from-[#007b85] hover:to-[#0C1C46] transition-all duration-300 neon-glow">
+                            Join
+                        </a>
+                </nav>
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden w-10 h-10 rounded-full bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white flex items-center justify-center hover:from-[#007b85] hover:to-[#0C1C46] transition-all duration-300 ml-4">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
 
-    <!-- HERO SECTION (single, functional waitlist form) -->
+<!-- HERO SECTION (single, functional waitlist form) -->
 <section class="hero-section" style="padding: 80px 0 40px 0; text-align: center; background: #f8f9fa;">
   <h1 class="fade-in" style="font-size:2.5rem; font-weight:800; color:#222; margin-bottom:18px; animation:fadeInUp 0.7s cubic-bezier(.4,0,.2,1);">Super Agent — Test, Analyze & Score Any <span style="color:#1976d2;">AI Agent</span></h1>
   <p class="fade-in" style="max-width:600px; margin:0 auto 18px auto; color:#444; font-size:1.2rem; animation:fadeInUp 1s cubic-bezier(.4,0,.2,1); animation-delay:0.2s; animation-fill-mode:both;">Super Agent is an advanced AI evaluator that performs a complete screening test on any AI agent — including LLMs, chatbots, and custom APIs — and delivers detailed performance analytics in a statistical format.</p>
@@ -554,6 +591,20 @@ form.addEventListener('submit', function(e) {
                 // Handle network errors
                 console.error("Error during form submission:", error);
                 showMessageBox("❌ There was a network error. Please check your connection and try again.", 'error');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
