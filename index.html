@@ -4,55 +4,260 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>zylense.ai - Automate Smarter</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2BS655Z2H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-C2BS655Z2H');
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth;
+            background: url('background-image.png') center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Add overlay for better text readability */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 248, 250, 0.1);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Unique diagonal layout */
+        .diagonal-section {
+            position: relative;
+            transform: skewY(-3deg);
+            margin: 4rem 0;
+        }
+        
+        .diagonal-content {
+            transform: skewY(3deg);
+            padding: 4rem 0;
+        }
+        
+        /* Hexagonal grid pattern */
+        .hex-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+        }
+        
+        /* Floating cards */
+        .floating-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .floating-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Neon glow effects */
+        .neon-glow {
+            box-shadow: 
+                0 0 20px rgba(0, 150, 164, 0.3),
+                0 0 40px rgba(0, 150, 164, 0.2),
+                0 0 60px rgba(0, 150, 164, 0.1);
+        }
+        
+        /* Animated background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animated-bg {
+            background: linear-gradient(-45deg, #F0F8FA, #E6F2FF, #0096A4, #0C1C46);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+
+        
+        /* Custom animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-animation {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        /* Gradient text with original colors */
+        .gradient-text {
+            background: linear-gradient(135deg, #0096A4 0%, #0C1C46 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #0096A4, #0C1C46);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #007b85, #233366);
+        }
     </style>
 </head>
 <body class="bg-white text-[#0C1C46] antialiased">
+
+    
     <div class="min-h-screen flex flex-col">
         <!-- Header / Hero -->
-        <header class="bg-white shadow-sm sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold">zylense.<span class="text-[#0096A4]">ai</span></a>
-                <nav class="space-x-6 hidden md:block">
-                    <a href="#about" class="hover:text-[#0096A4]">About</a>
-                    <a href="#products" class="hover:text-[#0096A4]">Products</a>
-                    <a href="#blog" class="hover:text-[#0096A4]">Blog</a>
-                    <a href="#contact" class="hover:text-[#0096A4]">Contact</a>
+        <header class="sticky top-0 z-50 w-full">
+            <div class="flex justify-center w-full items-center relative">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 pl-8">
+                    <a href="#" class="text-3xl font-black text-white hover:scale-110 transition-transform duration-300">
+                        zylense.<span class="text-[#00D4FF]">ai</span>
+                    </a>
+                </div>
+                <div class="bg-white/20 backdrop-blur-md border border-white/20 rounded-2xl mt-4 px-4 py-2 flex items-center w-auto shadow-lg">
+                    <nav class="hidden md:flex items-center space-x-1">
+                        <a href="#about" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#0096A4] hover:to-[#007b85] hover:text-white transition-all duration-300 font-medium">
+                            About
+                        </a>
+                        <a href="#products" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#007b85] hover:to-[#0C1C46] hover:text-white transition-all duration-300 font-medium">
+                            Products
+                        </a>
+                        <a href="#blog" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#0C1C46] hover:to-[#0096A4] hover:text-white transition-all duration-300 font-medium">
+                            Blog
+                        </a>
+                        <a href="#contact" class="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white font-bold hover:from-[#007b85] hover:to-[#0C1C46] transition-all duration-300 neon-glow">
+                            Contact
+                        </a>
                 </nav>
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden w-10 h-10 rounded-full bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white flex items-center justify-center hover:from-[#007b85] hover:to-[#0C1C46] transition-all duration-300 ml-4">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </header>
         <main class="flex-1">
             <!-- Hero Section -->
-            <section class="text-center py-20 px-4 bg-gradient-to-br from-[#F0F8FA] to-[#E6F2FF]">
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-4">Automate Smarter with zylense.ai</h1>
-                <p class="text-xl md:text-2xl font-medium mb-8">Revolutionizing how businesses operate with AI-powered automation tools built for MSMEs, developers, and modern teams.</p>
-                <div class="flex flex-col md:flex-row justify-center gap-4">
-                    <a href="#msme" class="bg-[#0096A4] text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-[#007b85] transition">Request MSME Tool Access</a>
-                    <a href="#superagent" class="bg-[#0C1C46] text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-[#233366] transition">Try Super Agent Beta</a>
+            <section class="diagonal-section">
+                <div class="hex-pattern"></div>
+                <div class="diagonal-content">
+                    <div class="max-w-6xl mx-auto px-4 py-20">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center">
+                            <!-- Left Content -->
+                            <div class="float-animation">
+                                <div class="floating-card p-8 mb-8">
+                                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white px-4 py-2 rounded-full text-sm font-bold mb-6">
+                                        <i class="fas fa-rocket"></i>
+                                        <span>AI-Powered Automation Platform</span>
+                                    </div>
+                                    
+                                    <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+                                        Automate Smarter with 
+                                        <span class="gradient-text">zylense.ai</span>
+                                    </h1>
+                                    
+                                    <p class="text-xl font-medium mb-8 text-gray-700 leading-relaxed">
+                                        Revolutionizing how businesses operate with AI-powered automation tools built for 
+                                        <span class="font-semibold text-[#0096A4]">MSMEs</span>, 
+                                        <span class="font-semibold text-[#0C1C46]">developers</span>, and 
+                                        <span class="font-semibold text-[#0096A4]">modern teams</span>.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Right Content -->
+                            <div class="pulse-animation">
+                                <div class="floating-card p-8">
+                                    <div class="space-y-6">
+                                        <a href="#msme" class="block w-full bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white px-8 py-4 rounded-2xl font-bold text-center hover:from-[#007b85] hover:to-[#0C1C46] transition-all duration-300 neon-glow">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <i class="fas fa-chart-line text-2xl"></i>
+                                                <span class="text-lg">Request MSME Tool Access</span>
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="#superagent" class="block w-full bg-gradient-to-r from-[#0C1C46] to-[#233366] text-white px-8 py-4 rounded-2xl font-bold text-center hover:from-[#233366] hover:to-[#0096A4] transition-all duration-300 neon-glow">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <i class="fas fa-robot text-2xl"></i>
+                                                <span class="text-lg">Try Super Agent Beta</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <!-- About Section -->
             <section id="about" class="py-20 px-4 max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold mb-6 text-center">About zylense.ai</h2>
-                <div class="space-y-6 text-lg">
+                <h2 class="text-4xl font-bold mb-6 text-center text-white">About zylense.ai</h2>
+                <div class="space-y-6 text-lg text-white">
                     <p><span class="font-semibold">Our Mission:</span> At zylense.ai, our mission is simple: to make automation accessible and powerful for every business. We develop AI tools that reduce manual work, improve accuracy, and unlock new opportunities for growth.</p>
                     <ul class="list-disc pl-6">
                         <li>Real-world AI for real-world businesses</li>
                         <li>Designed with Indian MSMEs and global teams in mind</li>
                         <li>Built with performance, security, and usability at the core</li>
                     </ul>
-                    <p><span class="font-semibold">Meet the Team:</span> We’re a group of AI builders, automation experts, and product designers passionate about helping businesses grow smarter with technology.</p>
+                    <p><span class="font-semibold">Meet the Team:</span> We're a group of AI builders, automation experts, and product designers passionate about helping businesses grow smarter with technology.</p>
                 </div>
             </section>
             <!-- Products Section -->
-            <section id="products" class="py-20 px-4 bg-[#F8FAFC]">
-                <h2 class="text-4xl font-bold mb-12 text-center">Our Products</h2>
+            <section id="products" class="py-20 px-4">
+                <h2 class="text-4xl font-bold mb-12 text-center text-white">Our Products</h2>
                 <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
                     <!-- MSME Business Assistant -->
-                    <div id="msme" class="bg-white rounded-3xl shadow-lg p-8 flex flex-col">
+                    <div id="msme" class="floating-card p-8 flex flex-col">
                         <h3 class="text-2xl font-bold mb-2">MSME Business Assistant <span class="text-sm text-[#0096A4]">(Early Access)</span></h3>
                         <p class="mb-4">A smart automation platform tailored for Indian MSMEs.</p>
                         <ul class="list-disc pl-6 mb-4 text-base space-y-1">
@@ -75,7 +280,7 @@
                         <a href="msme-details.html" class="mt-auto bg-[#0096A4] text-white px-6 py-2 rounded-full font-semibold shadow hover:bg-[#007b85] transition">Join the MSME Beta List</a>
                     </div>
                     <!-- Super Agent -->
-                    <div id="superagent" class="bg-white rounded-3xl shadow-lg p-8 flex flex-col">
+                    <div id="superagent" class="floating-card p-8 flex flex-col">
                         <h3 class="text-2xl font-bold mb-2">Super Agent</h3>
                         <p class="mb-4">Test, analyze, and benchmark any AI agent.</p>
                         <ul class="list-disc pl-6 mb-4 text-base space-y-1">
@@ -99,32 +304,102 @@
                 </div>
             </section>
             <!-- Blog / Insights -->
-            <section id="blog" class="py-20 px-4 max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold mb-8 text-center">Blog / Insights</h2>
+            <section id="blog" class="py-24 px-4 relative overflow-hidden">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Background decoration -->
+                    <div class="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-[#0096A4]/5 to-transparent rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tr from-[#0C1C46]/5 to-transparent rounded-full blur-3xl"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="text-center mb-16">
+                            <div class="inline-flex items-center gap-2 bg-[#0096A4]/10 text-[#0096A4] px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                                <i class="fas fa-newspaper"></i>
+                                Latest Insights
+                            </div>
+                            <h2 class="text-5xl font-bold mb-6 text-white">Blog / Insights</h2>
+                            <div class="w-24 h-1 bg-gradient-to-r from-[#0096A4] to-[#0C1C46] mx-auto rounded-full"></div>
+                        </div>
+                        
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white rounded-2xl shadow p-6">
-                        <h4 class="text-xl font-semibold mb-2">5 Ways Automation Tools Are Helping MSMEs Compete Better</h4>
-                        <p class="text-gray-600">Discover how automation is leveling the playing field for small businesses in India and beyond.</p>
+                            <div class="group floating-card p-8 hover-lift relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#0096A4]/10 to-transparent rounded-full blur-2xl"></div>
+                                <div class="relative z-10">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="bg-[#0096A4]/10 text-[#0096A4] px-3 py-1 rounded-full text-xs font-semibold">MSME</span>
+                                        <span class="text-gray-500 text-sm">5 min read</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold mb-3 text-[#0C1C46] group-hover:text-[#0096A4] transition-colors">5 Ways Automation Tools Are Helping MSMEs Compete Better</h4>
+                                    <p class="text-gray-600 mb-4">Discover how automation is leveling the playing field for small businesses in India and beyond.</p>
+                                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Dec 15, 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="group floating-card p-8 hover-lift relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#0C1C46]/10 to-transparent rounded-full blur-2xl"></div>
+                                <div class="relative z-10">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="bg-[#0C1C46]/10 text-[#0C1C46] px-3 py-1 rounded-full text-xs font-semibold">AI</span>
+                                        <span class="text-gray-500 text-sm">7 min read</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold mb-3 text-[#0C1C46] group-hover:text-[#0096A4] transition-colors">How to Choose the Right AI Agent for Your Product</h4>
+                                    <p class="text-gray-600 mb-4">A practical guide for teams and developers evaluating AI solutions.</p>
+                                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Dec 12, 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="group floating-card p-8 hover-lift relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#0096A4]/10 to-transparent rounded-full blur-2xl"></div>
+                                <div class="relative z-10">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="bg-[#0096A4]/10 text-[#0096A4] px-3 py-1 rounded-full text-xs font-semibold">Product</span>
+                                        <span class="text-gray-500 text-sm">6 min read</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold mb-3 text-[#0C1C46] group-hover:text-[#0096A4] transition-colors">Behind the Build: Why We Created Super Agent at zylense.ai</h4>
+                                    <p class="text-gray-600 mb-4">Go behind the scenes with our team and learn what inspired our latest product.</p>
+                                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Dec 10, 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="group floating-card p-8 hover-lift relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#0C1C46]/10 to-transparent rounded-full blur-2xl"></div>
+                                <div class="relative z-10">
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="bg-[#0C1C46]/10 text-[#0C1C46] px-3 py-1 rounded-full text-xs font-semibold">Future</span>
+                                        <span class="text-gray-500 text-sm">8 min read</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold mb-3 text-[#0C1C46] group-hover:text-[#0096A4] transition-colors">The Future of Natural Language Interfaces in Business Automation</h4>
+                                    <p class="text-gray-600 mb-4">Explore the next wave of user-friendly AI for business.</p>
+                                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Dec 8, 2024</span>
+                                    </div>
+                                </div>
                     </div>
-                    <div class="bg-white rounded-2xl shadow p-6">
-                        <h4 class="text-xl font-semibold mb-2">How to Choose the Right AI Agent for Your Product</h4>
-                        <p class="text-gray-600">A practical guide for teams and developers evaluating AI solutions.</p>
                     </div>
-                    <div class="bg-white rounded-2xl shadow p-6">
-                        <h4 class="text-xl font-semibold mb-2">Behind the Build: Why We Created Super Agent at zylense.ai</h4>
-                        <p class="text-gray-600">Go behind the scenes with our team and learn what inspired our latest product.</p>
+                        
+                        <div class="text-center mt-12">
+                            <a href="#" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                                <span>View All Articles</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                     </div>
-                    <div class="bg-white rounded-2xl shadow p-6">
-                        <h4 class="text-xl font-semibold mb-2">The Future of Natural Language Interfaces in Business Automation</h4>
-                        <p class="text-gray-600">Explore the next wave of user-friendly AI for business.</p>
                     </div>
                 </div>
             </section>
             <!-- Contact & Demo -->
-            <section id="contact" class="py-20 px-4 bg-[#F8FAFC]">
-                <h2 class="text-4xl font-bold mb-8 text-center">Contact & Demo</h2>
-                <p class="text-center mb-8 text-lg">We'd love to hear from you. Whether you’re a business owner, developer, or curious partner – reach out to experience zylense.ai in action.</p>
-                <form class="max-w-2xl mx-auto bg-white rounded-2xl shadow p-8 grid gap-6">
+            <section id="contact" class="py-20 px-4">
+                <h2 class="text-4xl font-bold mb-8 text-center text-white">Contact & Demo</h2>
+                <p class="text-center mb-8 text-lg text-white">We'd love to hear from you. Whether you're a business owner, developer, or curious partner – reach out to experience zylense.ai in action.</p>
+                <form class="max-w-2xl mx-auto floating-card p-8 grid gap-6">
                     <div class="grid md:grid-cols-2 gap-6">
                         <input type="text" placeholder="Name" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-[#0096A4]" required>
                         <input type="email" placeholder="Email" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-[#0096A4]" required>
@@ -142,18 +417,236 @@
             </section>
         </main>
         <!-- Footer -->
-        <footer class="bg-[#0C1C46] text-white py-8 mt-12">
-            <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="text-lg font-bold">zylense.ai | Intelligent Automation for MSMEs & Developers</div>
-                <nav class="flex flex-wrap gap-6 text-sm">
-                    <a href="#about" class="hover:underline">About</a>
-                    <a href="#products" class="hover:underline">Products</a>
-                    <a href="#blog" class="hover:underline">Blog</a>
-                    <a href="#contact" class="hover:underline">Contact</a>
-                </nav>
+        <footer class="bg-gradient-to-br from-[#0C1C46] to-[#233366] text-white py-12 mt-12 relative overflow-hidden">
+            <!-- Background decoration -->
+            <div class="absolute top-0 left-0 w-64 h-64 bg-[#0096A4]/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <!-- Company Info -->
+                    <div class="md:col-span-2">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl font-bold">zylense.ai</span>
+                        </div>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Intelligent automation platform designed for MSMEs and developers. 
+                            We're building the future of business automation with AI-powered tools.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 bg-[#0096A4] rounded-full flex items-center justify-center hover:bg-[#007b85] transition-colors duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-[#0096A4] rounded-full flex items-center justify-center hover:bg-[#007b85] transition-colors duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-[#0096A4] rounded-full flex items-center justify-center hover:bg-[#007b85] transition-colors duration-300">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="text-lg font-bold mb-4 text-[#0096A4]">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">About</a></li>
+                            <li><a href="#products" class="text-gray-300 hover:text-white transition-colors duration-300">Products</a></li>
+                            <li><a href="#blog" class="text-gray-300 hover:text-white transition-colors duration-300">Blog</a></li>
+                            <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h4 class="text-lg font-bold mb-4 text-[#0096A4]">Contact</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-envelope text-[#0096A4]"></i>
+                                <span>info@zylense.ai</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-[#0096A4]"></i>
+                                <span>Hyderabad, India</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-700 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div class="text-sm text-gray-300">
+                            © 2025 zylense.ai | Made in India 🇮🇳
+                        </div>
+                        <div class="flex gap-6 text-sm">
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Privacy Policy</a>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="text-center text-xs text-gray-300 mt-4">© 2025 zylense.ai | Made in India | Privacy Policy</div>
         </footer>
     </div>
+    
+    <!-- JavaScript for enhanced interactivity -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for floating cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) rotate(0deg)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe floating cards for animation
+        document.querySelectorAll('.floating-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px) rotate(5deg)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.md\\:hidden');
+        const nav = document.querySelector('nav');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                nav.classList.toggle('hidden');
+                nav.classList.toggle('block');
+            });
+        }
+
+        // Form submission handling
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate form submission (replace with actual endpoint)
+                setTimeout(() => {
+                    // Show success message
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                    submitBtn.classList.remove('bg-gradient-to-r', 'from-[#0096A4]', 'to-[#007b85]');
+                    submitBtn.classList.add('bg-green-500');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-500');
+                        submitBtn.classList.add('bg-gradient-to-r', 'from-[#0096A4]', 'to-[#007b85]');
+                    }, 3000);
+                }, 2000);
+            });
+        }
+
+        // Parallax effect for diagonal sections
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const diagonalSections = document.querySelectorAll('.diagonal-section');
+            
+            diagonalSections.forEach(section => {
+                const speed = 0.3;
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    section.style.transform = `skewY(-3deg) translateY(${scrolled * speed}px)`;
+                }
+            });
+        });
+
+        // Add hover effects to floating cards
+        document.querySelectorAll('.floating-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) rotate(2deg) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotate(0deg) scale(1)';
+            });
+        });
+
+        // Animated overlay effect for space background
+        function animateBackground() {
+            const overlay = document.body;
+            let intensity = 0;
+            let increasing = true;
+            
+            setInterval(() => {
+                if (increasing) {
+                    intensity += 0.5;
+                    if (intensity >= 10) increasing = false;
+                } else {
+                    intensity -= 0.5;
+                    if (intensity <= 0) increasing = true;
+                }
+                
+                // Update the overlay opacity instead of changing the background
+                const overlayElement = document.querySelector('body::before');
+                if (overlayElement) {
+                    overlayElement.style.background = `rgba(240, 248, 250, ${0.1 + intensity/200})`;
+                }
+            }, 150);
+        }
+
+
+        
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            // Start background animation
+            animateBackground();
+            
+            // Add pulse effect to CTA buttons
+            document.querySelectorAll('.neon-glow').forEach(btn => {
+                setInterval(() => {
+                    btn.style.boxShadow = `
+                        0 0 20px rgba(0, 150, 164, 0.4),
+                        0 0 40px rgba(0, 123, 133, 0.3),
+                        0 0 60px rgba(12, 28, 70, 0.2)
+                    `;
+                    setTimeout(() => {
+                        btn.style.boxShadow = `
+                            0 0 20px rgba(0, 150, 164, 0.3),
+                            0 0 40px rgba(0, 123, 133, 0.2),
+                            0 0 60px rgba(12, 28, 70, 0.1)
+                        `;
+                    }, 1000);
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>
