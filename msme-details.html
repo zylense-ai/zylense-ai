@@ -4,7 +4,19 @@
   <meta charset="UTF-8">
   <title>Join MSME Tools Waiting List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2BS655Z2H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C2BS655Z2H');
+  </script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Base styles for Inter font, background, and full-height layout */
     html, body {
@@ -16,6 +28,143 @@
       min-height: 100vh;
       overflow-x: hidden;
       color: #0B0B5D; /* Default text color */
+      scroll-behavior: smooth;
+    }
+    
+    /* Enhanced animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .animate-slide-in-left {
+      animation: slideInLeft 0.8s ease-out;
+    }
+    
+    .animate-slide-in-right {
+      animation: slideInRight 0.8s ease-out;
+    }
+    
+    /* Enhanced hover effects */
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #0097A7 0%, #0B0B5D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Diagonal section styles for edge design */
+    .diagonal-section {
+      position: relative;
+      background: linear-gradient(135deg, #f4f6fa 0%, #e0f2f7 100%);
+      overflow: hidden;
+    }
+
+    .diagonal-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(0, 150, 164, 0.05) 50%, transparent 70%);
+      z-index: 0;
+    }
+
+    .diagonal-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hex-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0, 150, 164, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(12, 28, 70, 0.1) 0%, transparent 50%);
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .floating-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .pulse-animation {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .neon-glow {
+      box-shadow: 0 0 20px rgba(0, 150, 164, 0.3);
+    }
+
+    .neon-glow:hover {
+      box-shadow: 0 0 30px rgba(0, 150, 164, 0.5);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #0096A4, #0C1C46);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #007b85, #0C1C46);
     }
 
     /* Main container for the split layout */
@@ -172,6 +321,26 @@
       text-align: left;
       box-sizing: border-box;
       border: 1px solid #e5e7eb; /* Subtle border */
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .form-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #0097A7/10 0%, transparent 100%);
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+    }
+    
+    .form-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(11,11,93,0.15);
     }
 
     /* Label styling */
@@ -217,15 +386,36 @@
       border-radius: 0.75rem; /* More rounded */
       margin-top: 15px; /* More space above button */
       cursor: pointer;
-      transition: all 0.3s ease; /* Smooth transitions for hover */
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transitions for hover */
       box-shadow: 0 5px 15px rgba(0,151,167,0.25); /* Stronger shadow */
       letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .form-box button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
     }
 
     .form-box button:hover {
       background: linear-gradient(45deg, #007987 0%, #0B0B5D 100%); /* Darker gradient on hover */
       box-shadow: 0 8px 20px rgba(0,151,167,0.35); /* Even stronger shadow */
-      transform: translateY(-2px); /* Slight lift on hover */
+      transform: translateY(-2px) scale(1.02); /* Slight lift and scale on hover */
+    }
+    
+    .form-box button:hover::before {
+      left: 100%;
+    }
+    
+    .form-box button:active {
+      transform: translateY(0) scale(0.98);
     }
 
     /* Responsive adjustments for smaller screens */
@@ -300,16 +490,42 @@
   </style>
 </head>
 <body>
-  <!-- Navigation Bar Start -->
-<nav class="navbar">
-  <ul class="navbar-menu">
-    <li><a href="website.html">Home</a></li>
-  </ul>
-</nav>
-<!-- Navigation Bar End -->
-  <div class="split-container">
-    <div class="left-section">
-      <div class="headline">Unlock the Future of MSME Automation! 🚀</div>
+  <!-- Header / Hero -->
+        <header class="sticky top-0 z-50 w-full">
+            <div class="flex justify-center w-full items-center relative">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 pl-8">
+                    <a href="#" class="text-3xl font-black gradient-text hover:scale-110 transition-transform duration-300">
+                        zylense.<span class="text-[#0096A4]">ai</span>
+                    </a>
+                </div>
+                <div class="bg-transparent/30 backdrop-blur-sm border border-white/10 rounded-2xl mt-4 px-4 py-2 flex items-center w-auto">
+                    <nav class="hidden md:flex items-center space-x-1">
+                        <a href="website.html" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#0096A4] hover:to-[#007b85] hover:text-white transition-all duration-300 font-medium">
+                            Home
+                        </a>
+                        <a href="#features" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#0096A4] hover:to-[#007b85] hover:text-white transition-all duration-300 font-medium">
+                            Features
+                        </a>
+                        <a href="#benefits" class="px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-[#007b85] hover:to-[#0C1C46] hover:text-white transition-all duration-300 font-medium">
+                            Benefits
+                        </a>
+                        <a href="#join" class="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white font-bold hover:from-[#007b85] hover:to-[#0C1C46] transition-all duration-300 neon-glow">
+                            Join
+                        </a>
+                </nav>
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden w-10 h-10 rounded-full bg-gradient-to-r from-[#0096A4] to-[#007b85] text-white flex items-center justify-center hover:from-[#007b85] hover:to-[#0C1C46] transition-all duration-300 ml-4">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+      <div class="diagonal-section">
+      <div class="hex-pattern"></div>
+      <div class="diagonal-content">
+        <div class="split-container">
+          <div class="left-section animate-slide-in-left floating-card float-animation">
+      <div id="features" class="headline gradient-text">Unlock the Future of MSME Automation! 🚀</div>
       <div style="font-size:1.15rem; color:#0B0B5D; font-weight:600; margin-bottom:1.5rem;">Introducing the MSME Business Assistant (Early Access)</div>
       <div style="margin-top:1.5rem; margin-bottom:1.5rem;">
         <div style="font-weight:700; color:#0B0B5D; margin-bottom:0.5rem;">What You'll Get in Early Access:</div>
@@ -322,7 +538,7 @@
           <li>🌍 Multilingual Support (Coming Soon)</li>
         </ul>
       </div>
-      <div style="margin-bottom:1.5rem;">
+      <div id="benefits" style="margin-bottom:1.5rem;">
         <div style="font-weight:700; color:#0B0B5D; margin-bottom:0.5rem;">Why Join the Waitlist? ✨</div>
         <div style="color:#007987; font-size:1rem; margin-bottom:0.5rem;">Be an early adopter and help us shape the future of MSME tools. As a waitlist member, you'll get:</div>
         <ul>
@@ -334,9 +550,9 @@
       </div>
       <div style="font-weight:700; color:#0B0B5D; margin-bottom:0.5rem;">Request Early Access 🔑</div>
       <div style="color:#007987; font-size:1rem; margin-bottom:1.5rem;">Enter your email below for immediate access to the live beta. Your feedback will directly influence how we build for you.</div>
-    </div>
-    <div class="right-section">
-      <div class="cta-title">Join the MSME Tools Waiting List</div>
+          </div>
+          <div class="right-section animate-slide-in-right floating-card float-animation">
+      <div id="join" class="cta-title gradient-text">Join the MSME Tools Waiting List</div>
       <div class="cta-desc">Sign up to get notified as soon as our MSME tools go live!</div>
       <div class="avatars">
         <div class="avatar"><span>🧑‍💼</span></div>
@@ -346,7 +562,7 @@
         <div class="avatar"><span>🧑‍🔬</span></div>
         <div class="avatar"><span>👨‍🏭</span></div>
       </div>
-      <div class="form-box">
+      <div class="form-box hover-lift">
         <form id="waitingListForm" action="https://script.google.com/macros/s/AKfycbynmHEiGszXexwVMDkf8BAZsBtUOPqYF_aIxUuKnsfsF1l_CPx9_gMFj_DDErsphStE/exec" method="POST">
           <label for="name">Your Name</label>
           <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -361,11 +577,28 @@
       </div>
       <div style="color:#0B0B5D; font-size:1.05rem; font-weight:600; margin-top: 2rem; margin-bottom:0.7rem;">Built with care for Indian MSMEs 🇮🇳</div>
       <div style="color:#007987; font-size:1rem; font-style:italic;">We understand the challenges of managing vendors, inventory, GST, and customer communication. That's why this assistant has been designed specifically with real business scenarios in mind.<br><br>"Our goal is simple—empower local businesses with intelligent automation."</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
   <script>
-    // Ensure the DOM is fully loaded before executing JavaScript
+    // Smooth scrolling for navigation links
     document.addEventListener('DOMContentLoaded', (event) => {
+      // Add smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Ensure the DOM is fully loaded before executing JavaScript
       // Get a reference to the form element
       const waitingListForm = document.getElementById("waitingListForm");
 
